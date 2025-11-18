@@ -2,11 +2,11 @@
   <div class="logo">Easy<span>Funds</span></div>
 
   <ul class="nav-links">
-    <li><a routerLink="/founders">For Founders</a></li>
-    <li><a routerLink="/investor">For Investor</a></li>
-    <li><a routerLink="/portfolio">Portfolio</a></li>
-    <li><a routerLink="/prediction">Prediction</a></li>
-  </ul>
-
+   <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+  <a routerLink="/founders" routerLinkActive="active">Founders</a>
+  <a routerLink="/investor" routerLinkActive="active">Investor</a>
+  <a routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
+  <a routerLink="/predications" routerLinkActive="active">Predications</a>
   <button class="login-btn"><a routerLink="/login">Login</a></button>
+    </ul>
 </nav>
