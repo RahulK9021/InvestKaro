@@ -1,1 +1,69 @@
-<p>founders works!</p>
+<div class="container">
+  <h2>Founder Information</h2>
+
+  <form [formGroup]="founderForm" (ngSubmit)="onSubmit()">
+
+    <!-- Personal Information -->
+    <h3>Personal Info</h3>
+    <input type="text" formControlName="fullName" placeholder="Full Name" required>
+    <span class="error" *ngIf="fullName?.hasError('required')">*Name is required</span>
+    <span class="error" *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)"> *Please enter name </span>
+    <input formControlName="email" placeholder="Email">
+     <span class="error" *ngIf="email?.hasError('required')">*Email is required</span>
+    <span class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)"> *Please enter valid Email </span>
+    <input formControlName="phone" placeholder="Phone">
+    <input formControlName="location" placeholder="Location">
+    <input formControlName="linkedin" placeholder="LinkedIn">
+    <input formControlName="website" placeholder="Website">
+
+    <!-- Company Details -->
+    <h3>Company Details</h3>
+    <input formControlName="companyName" placeholder="Company Name">
+    <!-- <input formControlName="industry" placeholder="Industry"> -->
+
+    <label for=""> Indurstry List : </label><br><br>
+        <div *ngFor="let item of businessList">
+           
+                <input type="checkbox" [value]="item" (change)="onCategoryChange($event)"
+                    [checked]="founderForm.get('businessCategory')?.value?.includes(item)" />
+                {{ item }}
+           
+        </div>
+    <!-- <input formControlName="businessModel" placeholder="Business Model"> -->
+
+     <label for="businessModel">Business Model</label>
+        <select formControlName="businessModel" multiple class="business-model-dropdown">
+        <option *ngFor="let model of businessModels" [value]="model.name">
+            {{ model.name }} — {{ model.description }} (Eg: {{ model.example }})
+        </option>
+        </select>
+
+    <input formControlName="foundedYear" type="number" placeholder="Founded Year">
+    <input formControlName="teamSize" type="number" placeholder="Team Size">
+
+    <!-- Market Overview -->
+    <h3>Market & Business</h3>
+    <textarea formControlName="problem" placeholder="Problem"></textarea>
+    <textarea formControlName="solution" placeholder="Solution"></textarea>
+    <textarea formControlName="targetMarket" placeholder="Target Market"></textarea>
+    <textarea formControlName="usp" placeholder="USP"></textarea>
+    <textarea formControlName="competitors" placeholder="Competitors"></textarea>
+
+    <!-- Financials -->
+    <h3>Financials</h3>
+    <input formControlName="revenue" type="number" placeholder="Revenue">
+    <input formControlName="burnRate" type="number" placeholder="Burn Rate">
+    <input formControlName="cac" type="number" placeholder="CAC">
+    <input formControlName="ltv" type="number" placeholder="LTV">
+    <input formControlName="totalFunding" type="number" placeholder="Total Funding">
+
+    <!-- Funding Requirement -->
+    <h3>Funding Requirement</h3>
+    <input formControlName="amountRequired" type="number" placeholder="Amount Required">
+    <input formControlName="equityOffered" type="number" placeholder="Equity Offered (%)">
+    <input formControlName="valuation" type="number" placeholder="Valuation">
+
+    <button type="submit">Submit</button>
+
+  </form>
+</div>

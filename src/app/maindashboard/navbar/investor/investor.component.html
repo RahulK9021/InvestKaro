@@ -1,1 +1,115 @@
-<p>investor works!</p>
+<div class="container">
+    <h2>Investor Information</h2>
+
+    <form [formGroup]="investorForm" (ngSubmit)="onSubmit()">
+
+        <!-- PERSONAL INFO -->
+        <h3>Personal Information</h3>
+        <input formControlName="fullName" placeholder="Full Name">
+        <input formControlName="email" placeholder="Email">
+        <input formControlName="phone" placeholder="Phone">
+        <input formControlName="location" placeholder="Location">
+        <input formControlName="linkedin" placeholder="LinkedIn">
+        <input formControlName="website" placeholder="Website">
+
+        <!-- INVESTMENT PREFS -->
+        <h3>Investment Preferences</h3>
+
+        <label>Minimum Investment :</label>
+        <select formControlName="investmentMin">
+            <option value="5 Lacks">5 Lacks</option>
+            <option value="10 Lacks">10 Lacks</option>
+            <option value="15 Lacks">15 Lacks</option>
+            <option value="20 Lacks">20 Lacks</option>
+            <option value="25 Lacks">25 Lacks</option>
+            <option value="30 Lacks">30 Lacks</option>
+            <option value="35 Lacks">35 Lacks</option>
+            <option value="40 Lacks">40 Lacks</option>
+        </select>
+
+        <label>Maximum Investment :</label>
+        <select formControlName="investmentMax">
+            <option value="10 Lacks">10 Lacks</option>
+            <option value="20 Lacks">20 Lacks</option>
+            <option value="30 Lacks">30 Lacks</option>
+            <option value="40 Lacks">40 Lacks</option>
+            <option value="50 Lacks">50 Lacks</option>
+            <option value="60 Lacks">60 Lacks</option>
+            <option value="70 Lacks">70 Lacks</option>
+            <option value="80 Lacks">80 Lacks</option>
+            <option value="90 Lacks">90 Lacks</option>
+            <option value="1 Cr">1 Cr</option>
+        </select>
+
+        <label for=""> Businesses List : </label><br><br>
+        <div *ngFor="let item of businessList">
+           
+                <input type="checkbox" [value]="item" (change)="onCategoryChange($event)"
+                    [checked]="investorForm.get('businessCategory')?.value?.includes(item)" />
+                {{ item }}
+           
+        </div>
+
+        <!-- <input formControlName="startupStage" placeholder="Startup Stage (Seed, Series A...)"> -->
+        <label for="startupStage">Startup Stage (Seed, Series A...)</label>
+        <select name="startupStage" id="" formControlName="startupStage">
+            <option value="Idea Stage">Idea Stage : Business is only an idea , No product,Research and planning phase
+            </option>
+            <option value="Pre-Seed Stage">Pre-Seed Stage : Early validation Prototype development,Founders use personal
+                savings,Very small team</option>
+            <option value="Seed Stage">Seed Stage : MVP (Minimum Viable Product) ready,First customers/start of
+                revenue,Looking for first serious investors</option>
+            <option value="Early Stage / Pre-Series A">Early Stage / Pre-Series A : Product is improving, Small but
+                growing user base,Need money for marketing, hiring, scaling</option>
+            <option value="Series A">Series A : Strong traction & revenue ,Proven business model, Aim: expand and
+                optimize</option>
+            <option value="Series B">Series B : Scaling fast ,Strong market presence ,Aim: expand into new markets, hire
+                big teams</option>
+            <option value="Series C">Series C : Large company ,Expanding globally ,Acquisitions, product diversification
+            </option>
+            <option value="Growth Stage / Expansion">Growth Stage / Expansion : Sustainable revenue & profit ,Strong
+                customer base, Heavy scaling</option>
+            <option value="Pre-IPO (Initial Public Offering)">Pre-IPO (Initial Public Offering) : Company preparing to
+                be listed on stock market ,Massive investments and compliance</option>
+            <option value="IPO / Public Company">IPO / Public Company : Company sells shares to public ,Fully matured
+            </option>
+        </select>
+
+        <!-- <input formControlName="investmentType" placeholder="Investment Type (Equity/Debt)"> -->
+        <label for="investmentType">Investment Type (Equity/Debt)</label>
+        <select name="investmentType" formControlName="investmentType" id="">
+            <option value="Equity Investment">Equity Investment : Investor gets ownership (shares) in the company.</option>
+            <option value="Debt Investment">Debt Investment : Investor gives money as a loan, and business must repay with interest.</option>
+            <option value="Convertible Debt / Convertible Notes">Convertible Debt / Convertible Notes : Starts as a loan, converts into equity later.</option>
+            <option value="SAFE (Simple Agreement for Future Equity)">SAFE (Simple Agreement for Future Equity) : Investor gets the right to future equity — without interest or maturity date.</option>
+            <option value="Revenue-Based Financing">Revenue-Based Financing : Investor gets a fixed percentage of monthly revenue until repayment is done.</option>
+            <option value="Grants (Non-Equity Funding)">Grants (Non-Equity Funding) : Free money given by government, NGOs, or startup programs.</option>
+            <option value="Partnership Investment">Partnership Investment : Investor becomes a business partner with profit-sharing (common in small local businesses).</option>
+            <option value="Asset-Based Investment">Asset-Based Investment : Investor funds assets like: Machines ,Vehicles ,Shops ,Gold and earns returns.</option>
+        </select>
+
+        <!-- <input formControlName="riskAppetite" placeholder="Risk Appetite (Low / Medium / High)"> -->
+        <label for="riskAppetite">Risk Appetite (Low / Medium / High)</label>
+        <select name="riskAppetite"  formControlName="riskAppetite" id="">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label for="businessModel">Business Model</label>
+        <select formControlName="businessModel" multiple class="business-model-dropdown">
+        <option *ngFor="let model of businessModels" [value]="model.name">
+            {{ model.name }} — {{ model.description }} (Eg: {{ model.example }})
+        </option>
+        </select>
+
+        <h3>Background</h3>
+        <input formControlName="currentRole" placeholder="Current Role">
+        <input formControlName="companyName" placeholder="Company Name">
+        <input type="number" formControlName="experienceYears" placeholder="Experience (Years)">
+        <textarea formControlName="fundedStartups" placeholder="Previously Funded Startups"></textarea>
+        <input type="number" formControlName="totalCapitalInvested" placeholder="Total Capital Invested">
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
